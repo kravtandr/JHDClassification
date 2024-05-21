@@ -1,0 +1,13 @@
+# git ignore for django app
+
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info
+*.egg-info/*
+*.dist-info
+*.dist-info/*
+*.egg
+*.egg/*
+/media/images

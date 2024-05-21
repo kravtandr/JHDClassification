@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<meta charset="windows-1251">
+<title>Домашнее задание 1</title>
+<style>
+    /* Add some padding on document's body to prevent the content
+    to go underneath the header and footer */
+    body{        
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
+    .fixed-header, .fixed-footer{
+        width: 100%;
+        position: fixed;        
+        background: #333;
+        padding: 10px 0;
+        color: #fff;
+    }
+    .fixed-header{
+        top: 0;
+    }
+    .fixed-footer{
+        bottom: 0;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto; /* Center the DIV horizontally */
+    }
+    nav a{
+        color: #fff;
+        text-decoration: none;
+        padding: 7px 25px;
+        display: inline-block;
+    }
+    .create-line {
+        border-top: 3px solid #32a1ce;
+        margin-bottom: 30px;
+    }
+</style>
+</head>
+<body>
+
+        <div class="container">
+            <div class="row">
+              <div class="col border">
+                <h3 class="display-6">Изображение</h3>
+                <div class="create-line"></div>
+                
+                <div class="row container">
+                    <div class="row">
+                        <form action="predictImage" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                
+                            <div class="mb-3">
+                                <label class="form-control" tabindex="0">Загрузить изображение
+                                    <input class="form-control invisible" type="file" id="filePath" name="filePath"  onchange="form.submit()">
+                                  </label>
+                                
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                    <div class="row ">
+                        <img src="{{image}}" alt="connect" style="max-height:800px">
+                        <br>    
+                        <!-- {{image}} -->
+                    </div>
+                    <br>  
+                    <div class="row ">
+                        <h5>Размер изображения: {{info_size}} </h5>
+                        <h5>Формат: {{info_format}} </h5>
+                        <h5>Вес: {{info_weight}} Байт </h5>
+                    </div>
+                </div>
+
+
+              
+
+              </div>
+              <div class="col border container">
+                <h3 class="display-6">Результат Классификации</h3>
+                <div class="create-line"></div>
+                <div class="row mb-3">
+                    <div class="mx-auto mb-3">
+                        {% if scorePrediction %}
+                        <h5 class="margin-left-20">Результат распознования : {{scorePrediction}}</h5>
+                        {% endif %}
+                        <img src="{{hist}}" alt="connect" style="max-height:800px">
+                        <!-- {{hist}} -->
+                    </div>
+
+                    
+                   
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+      </div>
+    <div class="fixed-header">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <div class="fixed-footer">
+        <div class="container"></div>        
+    </div>
+</body>
+</html>
